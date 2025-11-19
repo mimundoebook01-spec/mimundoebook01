@@ -1,0 +1,18 @@
+{
+    "productos": [],
+    "clientes": [],
+    "pedidos": [],
+    "reportes": {
+        "dia": {
+            "total_vendido": 0,
+            "pedidos": 0,
+            "ganancia": 0
+        },
+        "semana": {
+            "ganancia": 0
+        },
+        "mes": {
+            "ganancia": 0
+        }
+    }
+}
