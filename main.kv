@@ -1,0 +1,198 @@
+#:kivy 2.3.0
+
+<MainScreen>:
+    name: "main"
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(10)
+        spacing: dp(10)
+
+        Label:
+            text: "💫Immanuel🌟 - Sistema de Pedidos"
+            font_size: "24sp"
+            bold: True
+            size_hint_y: None
+            height: dp(40)
+
+        Button:
+            text: "💰 Crear Pedido"
+            font_size: "20sp"
+            on_release: app.root.current = "pedido"
+
+        Button:
+            text: "📦 Productos"
+            font_size: "20sp"
+            on_release: app.root.current = "productos"
+
+        Button:
+            text: "📊 Reportes"
+            font_size: "20sp"
+            on_release: app.root.current = "reportes"
+
+        Button:
+            text: "👤 Clientes"
+            font_size: "20sp"
+            on_release: app.root.current = "clientes"
+
+
+<PantallaPedido>:
+    name: "pedido"
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(10)
+        spacing: dp(10)
+
+        Label:
+            text: "📝 Crear Pedido"
+            font_size: "22sp"
+
+        TextInput:
+            id: cliente_nombre
+            hint_text: "Nombre del cliente"
+
+        TextInput:
+            id: cliente_direccion
+            hint_text: "Dirección"
+
+        TextInput:
+            id: cliente_telefono
+            hint_text: "Teléfono"
+
+        Spinner:
+            id: selector_producto
+            text: "Seleccionar Producto"
+            values: app.producto_nombres()
+
+        TextInput:
+            id: cantidad
+            hint_text: "Cantidad"
+            input_filter: "int"
+
+        Button:
+            text: "➕ Agregar al pedido"
+            on_release: app.agregar_item_pedido()
+
+        Label:
+            id: total_label
+            text: "Total: $0"
+            font_size: "22sp"
+            bold: True
+
+        Spinner:
+            id: metodo_pago
+            text: "Método de pago"
+            values: ["Efectivo", "Transferencia"]
+
+        TextInput:
+            id: paga_con
+            hint_text: "Paga con (si es efectivo)"
+            input_filter: "float"
+
+        Label:
+            id: vuelto_label
+            text: "Vuelto: $0"
+
+        Button:
+            text: "🧾 Generar Ticket"
+            on_release: app.generar_ticket()
+
+        Button:
+            text: "⬅ Volver"
+            on_release: app.root.current = "main"
+
+
+<PantallaProductos>:
+    name: "productos"
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(10)
+        spacing: dp(10)
+
+        Label:
+            text: "📦 Gestión de Productos"
+            font_size: "22sp"
+
+        TextInput:
+            id: prod_nombre
+            hint_text: "Nombre del producto"
+
+        TextInput:
+            id: prod_precio
+            hint_text: "Precio de venta"
+            input_filter: "float"
+
+        Button:
+            text: "💾 Guardar Producto"
+            on_release: app.guardar_producto()
+
+        Button:
+            text: "⬅ Volver"
+            on_release: app.root.current = "main"
+
+
+<PantallaReportes>:
+    name: "reportes"
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(10)
+        spacing: dp(10)
+
+        Label:
+            text: "📊 Reportes Generales"
+            font_size: "22sp"
+
+        Label:
+            id: ventas_dia
+            text: "Ventas del día: $0"
+
+        Label:
+            id: pedidos_dia
+            text: "Pedidos del día: 0"
+
+        Label:
+            id: ganancia_dia
+            text: "Ganancia del día: $0"
+
+        Label:
+            id: ganancias_semana
+            text: "Ganancia semanal: $0"
+
+        Label:
+            id: ganancias_mes
+            text: "Ganancia mensual: $0"
+
+        Button:
+            text: "⬅ Volver"
+            on_release: app.root.current = "main"
+
+
+<PantallaClientes>:
+    name: "clientes"
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(10)
+        spacing: dp(10)
+
+        Label:
+            text: "👤 Base de Clientes"
+            font_size: "22sp"
+
+        TextInput:
+            id: cli_nombre
+            hint_text: "Nombre"
+
+        TextInput:
+            id: cli_telefono
+            hint_text: "Teléfono"
+
+        TextInput:
+            id: cli_direccion
+            hint_text: "Dirección"
+
+        Button:
+            text: "💾 Guardar Cliente"
+            on_release: app.guardar_cliente()
+
+        Button:
+            text: "⬅ Volver"
+            on_release: app.root.current = "main"
